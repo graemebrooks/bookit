@@ -3,6 +3,7 @@ package com.bookit.bookit.dao;
 import com.bookit.bookit.model.Book;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface BookDao {
@@ -18,4 +19,9 @@ public interface BookDao {
 
     List<Book> selectAllBooks();
 
+    Optional<Book> selectBookById(UUID id);
+
+    int deleteBookById(UUID id);
+
+    int updateBookById(UUID id, Book book);
 }
