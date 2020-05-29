@@ -5,6 +5,8 @@ import com.bookit.bookit.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +22,7 @@ public class BookController {
     }
 
     @PostMapping
-    public void addBook(@RequestBody Book book) {
+    public void addBook(@Valid @NotNull @RequestBody Book book) {
         bookService.addBook(book);
     }
 
@@ -40,7 +42,7 @@ public class BookController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateBookById(@PathVariable("id") UUID id, @RequestBody Book bookToUpdate) {
+    public void updateBookById(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Book bookToUpdate) {
         bookService.updateBook(id, bookToUpdate);
     }
 }

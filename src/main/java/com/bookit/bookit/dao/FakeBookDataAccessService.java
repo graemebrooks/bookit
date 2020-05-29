@@ -15,7 +15,7 @@ public class FakeBookDataAccessService implements BookDao {
 
     @Override
     public int insertBook(UUID id, Book book) {
-        DB.add(new Book(id, book.getTitle()));
+        DB.add(new Book(id, book.getTitle(), book.getAuthor(), book.getGenre()));
         return 1;
     }
 
@@ -44,7 +44,7 @@ public class FakeBookDataAccessService implements BookDao {
         return selectBookById(id).map(book -> {
             int indexOfBookToUpdate = DB.indexOf(book);
             if (indexOfBookToUpdate >= 0) {
-                DB.set(indexOfBookToUpdate, new Book(id, update.getTitle()));
+                DB.set(indexOfBookToUpdate, new Book(id, update.getTitle(), update.getAuthor(), update.getGenre()));
                 return 1;
             }
             return 0;
